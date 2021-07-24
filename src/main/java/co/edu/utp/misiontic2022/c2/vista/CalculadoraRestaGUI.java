@@ -1,10 +1,12 @@
 package co.edu.utp.misiontic2022.c2.vista;
 
-import java.awt.FlowLayout;
+import java.awt.GridLayout;
 
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
+import javax.swing.JPanel;
 import javax.swing.JTextField;
 
 import co.edu.utp.misiontic2022.c2.controlador.CalculadoraController;
@@ -25,23 +27,36 @@ public class CalculadoraRestaGUI extends JFrame implements CalculadoraVista {
         setTitle("Aplicación MVC para Resta");
         setDefaultCloseOperation(EXIT_ON_CLOSE);
 
-        setLayout(new FlowLayout());
+        setLayout(new GridLayout(3, 1));
 
         txtNumeroUno = new JTextField(10);
-        txtNumeroDos = new JTextField(10);
-        txtResultado = new JTextField(10);
-        txtResultado.setEditable(false);
-        btnRestar = new JButton("Restar");
-        
-        getContentPane().add(new JLabel("Numero 1:"));
-        getContentPane().add(txtNumeroUno);
-        getContentPane().add(new JLabel("Numero 2:"));
-        getContentPane().add(txtNumeroDos);
-        getContentPane().add(btnRestar);
-        getContentPane().add(new JLabel("Resultado:"));
-        getContentPane().add(txtResultado);
+        txtNumeroUno.setHorizontalAlignment(JTextField.TRAILING);
 
-        setSize(500, 300);
+        txtNumeroDos = new JTextField(10);
+        txtNumeroDos.setHorizontalAlignment(JTextField.TRAILING);
+
+        txtResultado = new JTextField(10);
+        txtResultado.setHorizontalAlignment(JTextField.TRAILING);
+        txtResultado.setEditable(false);
+        
+        btnRestar = new JButton("Restar");
+
+        var panel = new JPanel();
+        panel.add(new JLabel("Numero 1:"));
+        panel.add(txtNumeroUno);
+        getContentPane().add(panel);
+
+        panel = new JPanel();
+        panel.add(new JLabel("Numero 2:"));
+        panel.add(txtNumeroDos);
+        getContentPane().add(panel);
+
+        panel = new JPanel();
+        panel.add(btnRestar);
+        panel.add(txtResultado);
+        getContentPane().add(panel);
+
+        setSize(350, 150);
         setLocationRelativeTo(null);
     }
 
@@ -68,6 +83,11 @@ public class CalculadoraRestaGUI extends JFrame implements CalculadoraVista {
 
         setVisible(true);
 
+    }
+
+    @Override
+    public void mostrarExcepcion(Exception ex) {
+        JOptionPane.showMessageDialog(this, ex.getMessage(), "Resta MVC-GUI", JOptionPane.ERROR_MESSAGE);
     }
 
 }

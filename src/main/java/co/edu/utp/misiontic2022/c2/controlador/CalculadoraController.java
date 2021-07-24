@@ -27,30 +27,34 @@ public class CalculadoraController implements ActionListener {
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        model.setNumeroUno(Integer.valueOf(view.getNumeroUno()));
-        model.setNumeroDos(Integer.valueOf(view.getNumeroDos()));
+        try {
+            model.setNumeroUno(Integer.valueOf(view.getNumeroUno()));
+            model.setNumeroDos(Integer.valueOf(view.getNumeroDos()));
 
-        switch (operation) {
-            case SUMA:
-                model.sumar();
-                break;
-            case RESTA:
-                model.restar();
-                break;
-            case MULTIPLICACION:
-                model.multiplicar();
-                break;
-            case DIVISION:
-                model.dividir();
-                break;
-            case MODULO:
-                model.calcularModulo();
-                break;
-            default:
-                throw new UnsupportedOperationException("Operacion no implementada: " + operation);
+            switch (operation) {
+                case SUMA:
+                    model.sumar();
+                    break;
+                case RESTA:
+                    model.restar();
+                    break;
+                case MULTIPLICACION:
+                    model.multiplicar();
+                    break;
+                case DIVISION:
+                    model.dividir();
+                    break;
+                case MODULO:
+                    model.calcularModulo();
+                    break;
+                default:
+                    throw new UnsupportedOperationException("Operacion no implementada: " + operation);
+            }
+
+            view.setResultado(model.getResultado().toString());
+        } catch (Exception ex) {
+            view.mostrarExcepcion(ex);
         }
-
-        view.setResultado(model.getResultado().toString());
     }
 
     public void iniciar() {

@@ -12,4 +12,6 @@ public interface CalculadoraVista {
 
     public void iniciar(CalculadoraController controller);
 
+    public void mostrarExcepcion(Exception ex);
+
 }

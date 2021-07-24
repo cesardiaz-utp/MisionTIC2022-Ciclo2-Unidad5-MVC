@@ -93,4 +93,9 @@ public class CalculadoraConsola implements CalculadoraVista {
         menuPrincipal();
     }
 
+    @Override
+    public void mostrarExcepcion(Exception ex) {
+        System.err.println("Excepción: " + ex.getMessage());
+    }
+
 }
